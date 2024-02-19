@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app-deployment
+spec:
+  replicas: 2  # Set the number of replicas
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+      - name: nodejs-app
+        image: kavita312/nodeapp:latest
+        ports:
+        - containerPort: 3000
+      imagePullSecrets:
+      - name: kavita-registry-secret
